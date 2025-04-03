@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HoraController;
+use App\Http\Controllers\UsuariosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/usuarios', function () {
-    return response()->json([
-        'nombre' => 'Juan',
-        'edad' => 25,
-        'email' => 'juan@example.com'
-    ]);
+
 });
+
+Route::get('/usuarios', [UsuariosController::class, 'index']);

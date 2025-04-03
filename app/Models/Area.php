@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Usuarios extends Model
+class Area extends Model
 {
     use HasFactory;
-    protected $table = 'usuarios';
+    protected $table = 'area';
     protected $primaryKey = 'id';
-    protected $fillable = ['nombre', 'apellido', 'cedula', 'email', 'password', 'area_id'];
+    protected $fillable = ['nombre_area'];
 }
