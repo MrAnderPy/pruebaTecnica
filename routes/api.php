@@ -26,3 +26,6 @@ Route::get('/usuarios', function () {
 
 Route::get('/usuarios', [UsuariosController::class, 'index']);
 Route::post('/usuariosAgregar', [UsuariosController::class, 'store']);
+Route::put('/usuariosActualizar/{id}', [UsuariosController::class, 'update']);
+Route::get('/usuariosBuscar/{id}', [UsuariosController::class, 'show']);
+Route::delete('/usuariosEliminar/{id}', [UsuariosController::class, 'delete']);

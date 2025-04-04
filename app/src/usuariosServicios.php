@@ -65,7 +65,15 @@ class usuariosServicios
         return true;
     }
 
-    public function generarUsuario(){
-        
+    public function generarUsuario($nombre, $apellido, $usuarios){
+        $usuarios = $usuarios->pluck('usuario')->toArray();
+        $usuarioLimpio = strtolower(substr($nombre, 0, 1) . $apellido);
+        $usuario = $usuarioLimpio;
+        $contador = 1;
+        while(in_array($usuario, $usuarios)){
+            $usuario = $usuarioLimpio . $contador;
+            $contador ++;
+        }
+        return $usuario;
     }
 }
