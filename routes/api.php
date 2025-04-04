@@ -25,3 +25,4 @@ Route::get('/usuarios', function () {
 });
 
 Route::get('/usuarios', [UsuariosController::class, 'index']);
+Route::post('/usuariosAgregar', [UsuariosController::class, 'store']);
