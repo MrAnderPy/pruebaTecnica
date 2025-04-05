@@ -44,7 +44,7 @@ class usuariosRepositorios
                 'password' => bcrypt($request->password),
                 'email' => $request->email,
                 'area_id' => $request->area_id,
-                'usuario' => $usuario->usuario,
+                'usuario' => $request->usuario ?? $usuario->usuario,
             ]);
             return $usuario;
         }

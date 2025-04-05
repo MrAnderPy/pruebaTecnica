@@ -68,17 +68,32 @@ class UsuariosController extends Controller
             $this->usuariosServicios->validarUsuario($request);
             $this->usuariosServicios->validarArea($request->area_id, $areas);
             $this->usuariosServicios->validarClave($request->password);
+
+            $usuarioExistente = $this->usuariosRepositorios->buscarUsuarioPorId($id);
+            $usuarios = $this->usuariosRepositorios->getAllUsuarios();
+            if (
+                $request->nombre !== $usuarioExistente->nombre ||
+                $request->apellido !== $usuarioExistente->apellido) 
+                {
+                $usuarioGenerado = $this->usuariosServicios->generarUsuario(
+                    $request->nombre,
+                    $request->apellido,
+                    $usuarios->where('id', '!=', $id) 
+                );
+                $request->merge(['usuario' => $usuarioGenerado]);
+            }
+           
             $usuarioActualizado = $this->usuariosRepositorios->actualizarUsuario($request, $id);
+    
             return response()->json([
-                'message' => 'Usuario generado con éxito',
+                'message' => 'Usuario actualizado con éxito',
                 'usuario' => $usuarioActualizado
             ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'error' => $th->getMessage()
-            ], 422);
+            return response()->json(['error' => $th->getMessage()], 422);
         }
     }
+    
 
     public function delete($id){
         try {
